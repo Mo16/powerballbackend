@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-5fu+5d!(l(8u)r#h##8%8#@pug@!p2*s2kj(m2y)2_jr7(k_hk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['powerballbsc.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['powerballbsc.herokuapp.com', '127.0.0.1' ,'www.powershopbsc.com', 'powershopbsc.com']
 
 
 # Application definition

@@ -33,4 +33,14 @@ def get_winner(request):
             winner = utils.lottery_winner()
         return render(request, 'get_winner.html', {"winner": winner} )
     return render(request, 'index.html' )
+
+
+def get_winner(request):
+    winner = "[Coming Soon]"
+    if request.user.is_superuser:
+        if request.POST:
+            winner = utils.lottery_winner()
+        return render(request, 'get_winner.html', {"winner": winner} )
+    return render(request, 'index.html' )
+
     

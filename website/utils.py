@@ -23,9 +23,15 @@ def read_csv(name,address):
                     if  8963113495914575851 <= int(jsonResponse["result"]) <= 913563103851792183721:
                         print(int(jsonResponse["result"]))
                         write_to_csv(name,address,"higher_entries")
+                        write_to_csv(name,address,"middle_entries")
                         write_to_csv(name,address,"normal_entries")
                         return True
                     elif 6850772581124411325 <= int(jsonResponse["result"]) <= 8963113495914575850:
+                        print(int(jsonResponse["result"]))
+                        write_to_csv(name,address,"middle_entries")
+                        write_to_csv(name,address,"normal_entries")
+                        return True
+                    elif 6850772581124411325 <= int(jsonResponse["result"]) <= 5963113495914575850:
                         print(int(jsonResponse["result"]))
                         write_to_csv(name,address,"normal_entries")
                         return True
@@ -43,26 +49,26 @@ def write_to_csv(name,address,filename):
         writer.writerow({"Name": name,"Address":address })
     
 
-def lottery_winner():
+def lottery_winner(filename, winner_file):
     address_list = []
-    with open("normal_entries.csv", "r") as f:
+    with open(f"normal_entries.csv", "r") as f:
         r = csv.reader(f)
         for row in r:
             address_list.append(row[1])
     winner = random.choice(address_list)
     print(winner)
 
-    with open("winner.csv", "w") as f:
+    with open(f"winner.csv", "w") as f:
         writer = csv.writer(f)
         print(winner)
         writer.writerow({winner})
     return winner
 
 
-def read_winner():
+def read_winner(filename, winner_file):
     winner_list = []
-    with open("winner.csv", "r") as f:
-        writer = csv.reader(f)  
+    with open(f"winner.csv", "r") as f:
+        writer = csv.reader(f)
         for name in writer:
             winner_list.clear()
             winner_list.append(name[0])
