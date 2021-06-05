@@ -64,7 +64,7 @@ def read_winner():
         writer = csv.reader(f)  
         for name in writer:
             winner_list.clear()
-            winner_list.append(name[0])
+            winner_list.append(name[1])
     winner = random.choice(winner_list)
     return winner
 
