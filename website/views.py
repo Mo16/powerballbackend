@@ -26,7 +26,7 @@ def lottery(request):
     return render(request, 'index.html')
 
 def get_winner(request):
-    winner = 0
+    winner = "[Coming Soon]"
     if request.user.is_superuser:
         if request.POST:
             winner = utils.lottery_winner()
