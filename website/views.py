@@ -11,6 +11,7 @@ import time
 def index(request):
     
     winner = utils.read_winner()
+ 
     
     return render(request, 'index.html', {"winner":winner})
 

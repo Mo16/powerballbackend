@@ -44,12 +44,13 @@ def write_to_csv(name,address,filename):
     
 
 def lottery_winner():
-    address_list = [] 
+    address_list = []
     with open("normal_entries.csv", "r") as f:
         r = csv.reader(f)
         for row in r:
             address_list.append(row[1])
     winner = random.choice(address_list)
+    print(winner)
 
     with open("winner.csv", "w") as f:
         writer = csv.writer(f)
@@ -68,6 +69,4 @@ def read_winner():
     winner = random.choice(winner_list)
     return winner
 
-
-
-
+    
