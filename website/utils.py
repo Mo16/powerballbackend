@@ -44,7 +44,7 @@ def write_to_csv(name,address,filename):
     
 
 def lottery_winner():
-    address_list = []   q2
+    address_list = [] 
     with open("normal_entries.csv", "r") as f:
         r = csv.reader(f)
         for row in r:
