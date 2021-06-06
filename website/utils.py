@@ -96,3 +96,10 @@ def reset_winners(filename, winner_file):
         print(winner3)
         writer.writerow({winner,winner2,winner3})
     return winner
+
+
+def get_list_total(filename):
+    with open(f"{filename}.csv", "r") as f:
+        r = csv.reader(f)
+        return sum(1 for row in r)
+            
