@@ -10,10 +10,15 @@ import time
 # Create your views here.
 def index(request):
     
-    winner = utils.read_winner()
+    normal_winner = utils.read_winner("winner")
+    context = {"daily_winner_1":normal_winner[0],
+                "daily_winner_2":normal_winner[1],
+                "daily_winner_3":normal_winner[2],
+    
+    }
  
     
-    return render(request, 'index.html', {"winner":winner})
+    return render(request, 'index.html', context )
 
 
 def lottery(request):
@@ -28,19 +33,33 @@ def lottery(request):
 
 def get_winner(request):
     winner = "[Coming Soon]"
+    normal_winner = [1,2,3]
     if request.user.is_superuser:
         if request.POST:
-            winner = utils.lottery_winner()
-        return render(request, 'get_winner.html', {"winner": winner} )
+            winner = utils.lottery_winner("normal_entries","winner")
+            normal_winner = utils.read_winner("winner")
+            
+        return render(request, 'get_winner.html', {"daily_winner_1":normal_winner[0],
+                                                    "daily_winner_2":normal_winner[1],
+                                                    "daily_winner_3":normal_winner[2],})
     return render(request, 'index.html' )
 
 
-def get_winner(request):
+def get_higher_winner(request):
     winner = "[Coming Soon]"
     if request.user.is_superuser:
         if request.POST:
-            winner = utils.lottery_winner()
+            winner = utils.lottery_winner("higher_entries","higher_winner")
+           
         return render(request, 'get_winner.html', {"winner": winner} )
     return render(request, 'index.html' )
 
     
+def reset_winners(request):
+    winner = "[Coming soon]"
+    if request.user.is_superuser:
+        if request.POST:
+            print("TEST")
+            winner = utils.reset_winners("normal_entries","winner")
+        return render(request, 'get_winner.html', {"winner": winner} )
+    return render(request, 'index.html' )

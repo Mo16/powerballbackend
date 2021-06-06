@@ -9,7 +9,7 @@ import random
 
 
 def read_csv(name,address):
-    url = f'https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0x742eabb2538b3fdd79825eeb3b0e2a51863f456f&address={address}&tag=latest&apikey=WR57G6APH9W3YV5KXXRB1MNFN3YRWZAZCJ'
+    url = f'https://api.bscscan.com/api?module=account&action=tokenbalance&contractaddress=0x07C0755c5c8Ac1243DEb7498f27EdEDF9b01C5B2&address={address}&tag=latest&apikey=WR57G6APH9W3YV5KXXRB1MNFN3YRWZAZCJ'
     address_list = []
     with open("normal_entries.csv", "r") as f:
         r = csv.reader(f)
@@ -20,18 +20,19 @@ def read_csv(name,address):
                 if address not in address_list:
                     response = requests.get(url)
                     jsonResponse = response.json()
-                    if  8963113495914575851 <= int(jsonResponse["result"]) <= 913563103851792183721:
+                    print(jsonResponse)
+                    if  7645209056761735667 <= int(jsonResponse["result"]) <= 53408275893513070169:
                         print(int(jsonResponse["result"]))
                         write_to_csv(name,address,"higher_entries")
                         write_to_csv(name,address,"middle_entries")
                         write_to_csv(name,address,"normal_entries")
                         return True
-                    elif 6850772581124411325 <= int(jsonResponse["result"]) <= 8963113495914575850:
+                    elif 3656342574926225508 <= int(jsonResponse["result"]) <= 7645209056761735661:
                         print(int(jsonResponse["result"]))
                         write_to_csv(name,address,"middle_entries")
                         write_to_csv(name,address,"normal_entries")
                         return True
-                    elif 6850772581124411325 <= int(jsonResponse["result"]) <= 5963113495914575850:
+                    elif 824126792052201968 <= int(jsonResponse["result"]) <= 3656342574926225507:
                         print(int(jsonResponse["result"]))
                         write_to_csv(name,address,"normal_entries")
                         return True
@@ -51,28 +52,47 @@ def write_to_csv(name,address,filename):
 
 def lottery_winner(filename, winner_file):
     address_list = []
-    with open(f"normal_entries.csv", "r") as f:
+    with open(f"{filename}.csv", "r") as f:
         r = csv.reader(f)
         for row in r:
             address_list.append(row[1])
-    winner = random.choice(address_list)
+    winner  = random.choice(address_list)
+    winner2  = random.choice(address_list)
+    winner3  = random.choice(address_list)
     print(winner)
 
-    with open(f"winner.csv", "w") as f:
+    with open(f"{winner_file}.csv", "w") as f:
         writer = csv.writer(f)
-        print(winner)
-        writer.writerow({winner})
+        print(winner2)
+        print(winner3)
+        writer.writerow({winner,winner2,winner3})
     return winner
 
 
-def read_winner(filename, winner_file):
+def read_winner(winner_file):
     winner_list = []
-    with open(f"winner.csv", "r") as f:
+    with open(f"{winner_file}.csv", "r") as f:
         writer = csv.reader(f)
         for name in writer:
-            winner_list.clear()
-            winner_list.append(name[0])
-    winner = random.choice(winner_list)
-    return winner
+
+            winner_list.append(name)
+    print(winner_list)
+    return name
+
+
 
     
+def reset_winners(filename, winner_file):
+    address_list = []
+
+    winner  = "[Coming Soon]"
+    winner2  = "[Coming  Soon]"
+    winner3  = "[Coming   Soon]"
+    print(winner)
+
+    with open(f"{winner_file}.csv", "w") as f:
+        writer = csv.writer(f)
+        print(winner2)
+        print(winner3)
+        writer.writerow({winner,winner2,winner3})
+    return winner
