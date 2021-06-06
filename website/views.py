@@ -9,7 +9,6 @@ import time
 
 # Create your views here.
 def index(request):
-    
     normal_winner = utils.read_winner("winner")
     context = {"daily_winner_1":normal_winner[0],
                 "daily_winner_2":normal_winner[1],
@@ -32,6 +31,8 @@ def lottery(request):
     return render(request, 'index.html')
 
 def get_winner(request):
+    total = utils.get_list_total("normal_entries")
+
     winner = "[Coming Soon]"
     normal_winner = [1,2,3]
     if request.user.is_superuser:
@@ -41,7 +42,8 @@ def get_winner(request):
             
         return render(request, 'get_winner.html', {"daily_winner_1":normal_winner[0],
                                                     "daily_winner_2":normal_winner[1],
-                                                    "daily_winner_3":normal_winner[2],})
+                                                    "daily_winner_3":normal_winner[2],
+                                                    "total":total})
     return render(request, 'index.html' )
 
 
