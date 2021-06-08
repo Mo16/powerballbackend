@@ -106,19 +106,16 @@ def read_winner(winner_file):
     print(winner_list)
     return name
 
-
-
     
 def reset_winners(filename, winner_file,s3_folder):
     address_list = []
     winner  = "[Coming Soon]"
     winner2  = "[Coming  Soon]"
     winner3  = "[Coming   Soon]"
+    
 
     with open(f"{winner_file}.csv", "w") as f:
         writer = csv.writer(f)
-        print(winner2)
-        print(winner3)
         writer.writerow({winner,winner2,winner3})
     
     upload_to_aws(winner_file,s3_folder)
