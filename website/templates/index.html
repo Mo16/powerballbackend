@@ -102,7 +102,12 @@
                                     <span class="integration-icon">
                                         <img src="{% static 'img/svg/img-dollar.svg' %}" width="24" height="24" alt="">
                                     </span>
-                                    <span class="integration-text">Todays Daily 1st Place winner: <br> {{daily_winner_1}} 
+                                    <span class="integration-text">Todays Daily 1st Place winner: <br> 
+                                        {%for i in first_place%}
+                                        {{i.name}} ,
+                                       
+                                       {% endfor %}
+                                         {{daily_winner_1}} 
                                         
                                         {% for i in first_place %}
 
@@ -164,7 +169,12 @@
                         <h4 class="wow fadeInUp" data-wow-delay="0.3s">Lottery winners</h4>
                         <b><h6 class="wow fadeInUp" data-wow-delay="0.3s">Daily winners:</h6></b>
                             <br>
-                        <p class="wow fadeInUp" data-wow-delay="0.4s">1st Place: {{daily_winner_1}}
+                        <p class="wow fadeInUp" data-wow-delay="0.4s">1st Place: 
+                            {%for i in first_place%}
+                             {{i.name}} ,
+                            
+                            {% endfor %}
+                             {{daily_winner_1}}
                             
                             {%if first_place %}
                             {%for i in first_place%}
@@ -177,12 +187,23 @@
                         
                         </p> <br>
 
-                        <p class="wow fadeInUp" data-wow-delay="0.5s">2nd Place: {{daily_winner_2}}
+                        <p class="wow fadeInUp" data-wow-delay="0.5s">2nd Place:  
+                            {%for i in second_place%}
+                             {{i.name}} ,
+                            
+                            {% endfor %}
+                            {{daily_winner_2}}
+
                             {%for i in second_place%}
                             ( {{i.bnb}} )
                             
                             {% endfor %} </p> <br>
-                            <p class="wow fadeInUp" data-wow-delay="0.5s">3rd Place: {{daily_winner_3}}  
+                            <p class="wow fadeInUp" data-wow-delay="0.5s">3rd Place: 
+                                {%for i in third_place%}
+                                {{i.name}} ,
+                               
+                               {% endfor %}
+                                  {{daily_winner_3}}  
                                 {%for i in third_place%}
                                 ( {{i.bnb}} )
                                 
