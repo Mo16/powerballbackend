@@ -1,4 +1,5 @@
 import csv
+from .models import First_prize, Second_prize, Third_prize
 from django import contrib
 from django.shortcuts import render
 from . import utils
@@ -9,10 +10,20 @@ import time
 
 # Create your views here.
 def index(request):
+
     normal_winner = utils.read_winner("winner")
+    first_place = First_prize.objects.order_by('-id')
+    second_place = Second_prize.objects.order_by('-id')
+    third_place = Third_prize.objects.order_by('-id')
+
+
     context = {"daily_winner_1":normal_winner[0],
                 "daily_winner_2":normal_winner[1],
                 "daily_winner_3":normal_winner[2],
+                "first_place":first_place,
+                "second_place":second_place,
+                "third_place":third_place
+
     }
     return render(request, 'index.html', context )
 

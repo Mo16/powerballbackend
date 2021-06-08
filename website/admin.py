@@ -1,4 +1,5 @@
 from django.contrib import admin
-from .models import Lottery
-# Register your models here.
-admin.site.register(Lottery)
+from .models import *
+admin.site.register(First_prize)
+admin.site.register(Second_prize)
+admin.site.register(Third_prize)

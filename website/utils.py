@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.db.models import query
 import requests
 from requests.api import head
-from . import models
+from . import *
 import random
 import boto3
 import pandas as pd
