@@ -17,10 +17,14 @@
                     <div class="col-12 text-center wow fadeInUp" data-wow-delay="0.6s">
                         <button type="submit" class="btn dream-btn">Reset Normal prize Winners</button>
                     </div>
-                    {{winner}}
+                    <br>
+                   {% for person in view_csv%}
+                    <pre>{{person}} <br></pre>
+                   {%endfor%}
                 </div>
             </form>
-            <a  href="normal_entries.csv" ><button  >test</button></a>
+            
+
         </div>
     </div>
 </div>
